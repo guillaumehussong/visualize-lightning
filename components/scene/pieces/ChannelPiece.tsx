@@ -1,19 +1,35 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useLiveStats } from "@/lib/live";
 
+const SATS = 90; // particles streaming inside the pipe
+
 /** Industrial high-pressure conduit between two node pylons: flanged pipe,
- * bolts, pressure gauge, liquid split drifting inside. Live: channel count
+ * bolts, pressure gauge, liquid split drifting inside, and a live stream of
+ * sat particles flowing through the glass section. Live: channel count
  * + total network capacity. */
 export function ChannelPiece({ active }: { active: boolean }) {
   const stats = useLiveStats();
   const liquidL = useRef<THREE.Mesh>(null);
   const liquidR = useRef<THREE.Mesh>(null);
   const needle = useRef<THREE.Mesh>(null);
+  const sats = useRef<THREE.InstancedMesh>(null);
+
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const seeds = useMemo(
+    () =>
+      [...Array(SATS)].map(() => ({
+        offset: Math.random(),
+        radius: 0.05 + Math.random() * 0.16,
+        angle: Math.random() * Math.PI * 2,
+        speed: 0.6 + Math.random() * 0.7,
+      })),
+    [],
+  );
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
@@ -28,6 +44,25 @@ export function ChannelPiece({ active }: { active: boolean }) {
     }
     if (needle.current) {
       needle.current.rotation.z = -0.6 + split * 1.2;
+    }
+    // sats flow through the pipe; direction flips with the balance drift
+    if (sats.current) {
+      const dir = Math.sign(Math.cos(t * 0.5)) || 1;
+      for (let i = 0; i < SATS; i++) {
+        const s = seeds[i];
+        const u = (s.offset + t * s.speed * 0.12 * dir) % 1;
+        const x = (u < 0 ? u + 1 : u) * 2.4 - 1.2;
+        dummy.position.set(
+          x,
+          Math.cos(s.angle) * s.radius,
+          Math.sin(s.angle) * s.radius,
+        );
+        const pulse = 0.5 + 0.5 * Math.sin(t * 3 + i);
+        dummy.scale.setScalar(0.6 + pulse * 0.5);
+        dummy.updateMatrix();
+        sats.current.setMatrixAt(i, dummy.matrix);
+      }
+      sats.current.instanceMatrix.needsUpdate = true;
     }
   });
 
@@ -96,6 +131,16 @@ export function ChannelPiece({ active }: { active: boolean }) {
         <cylinderGeometry args={[0.26, 0.26, 3, 16]} />
         <meshStandardMaterial color="#ffb84d" emissive="#ffb84d" emissiveIntensity={0.6} />
       </mesh>
+
+      {/* sat particle stream inside the glass pipe */}
+      <instancedMesh ref={sats} args={[undefined, undefined, SATS]} frustumCulled={false}>
+        <sphereGeometry args={[0.035, 6, 6]} />
+        <meshStandardMaterial
+          color="#ffd700"
+          emissive="#ffd700"
+          emissiveIntensity={active ? 2.4 : 1.4}
+        />
+      </instancedMesh>
 
       {/* pressure gauge on top */}
       <group position={[0, 0.85, 0]}>
