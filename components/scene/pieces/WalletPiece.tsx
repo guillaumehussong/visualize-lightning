@@ -22,15 +22,20 @@ export function WalletPiece({ active }: { active: boolean }) {
 
   return (
     <group>
-      {/* chest body */}
+      {/* chest body: dark metal vault */}
       <mesh position={[0, -0.2, 0]}>
         <boxGeometry args={[2.2, 1.2, 1.4]} />
-        <meshStandardMaterial color="#3a2a18" roughness={0.7} metalness={0.3} />
+        <meshStandardMaterial color="#15151f" roughness={0.45} metalness={0.7} />
       </mesh>
       {/* open lid */}
       <mesh position={[0, 0.62, -0.62]} rotation={[-1.9, 0, 0]}>
         <boxGeometry args={[2.2, 0.18, 1.4]} />
-        <meshStandardMaterial color="#4a3620" roughness={0.7} metalness={0.3} />
+        <meshStandardMaterial color="#1c1c28" roughness={0.45} metalness={0.7} />
+      </mesh>
+      {/* emissive seam */}
+      <mesh position={[0, 0.42, 0]}>
+        <boxGeometry args={[2.24, 0.04, 1.44]} />
+        <meshStandardMaterial color="#f7931a" emissive="#f7931a" emissiveIntensity={1} />
       </mesh>
       {/* floating sats */}
       <group ref={sats}>
@@ -52,7 +57,7 @@ export function WalletPiece({ active }: { active: boolean }) {
           </mesh>
         ))}
       </group>
-      {stats && (
+      {active && stats && (
         <Html center distanceFactor={18} position={[0, -1.6, 0]} zIndexRange={[10, 0]}>
           <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
             $1 = {satsPerDollar(stats.price.usd).toLocaleString("en-US")} sats

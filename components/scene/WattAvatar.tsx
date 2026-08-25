@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { PIECES } from "@/lib/pieces";
 import { useMachineStore } from "@/lib/store";
 
-const HOME: [number, number, number] = [10, -2, 12];
+const HOME: [number, number, number] = [-14.2, -1.83, 7.8];
 
 /**
  * Watt, the mechanic who maintains the machine. Low-poly primitives, hard hat
@@ -51,17 +51,21 @@ export function WattAvatar() {
   });
 
   return (
-    <group position={HOME} rotation={[0, -0.6, 0]}>
-      {/* crate */}
+    <group position={HOME} rotation={[0, 0.9, 0]}>
+      {/* crate: dark machine-grade, orange edge */}
       <mesh position={[0, 0.35, 0]}>
         <boxGeometry args={[1.1, 0.7, 1.1]} />
-        <meshStandardMaterial color="#4a3620" roughness={0.8} />
+        <meshStandardMaterial color="#15151f" roughness={0.5} metalness={0.6} />
+      </mesh>
+      <mesh position={[0, 0.71, 0]}>
+        <boxGeometry args={[1.14, 0.03, 1.14]} />
+        <meshStandardMaterial color="#f7931a" emissive="#f7931a" emissiveIntensity={0.8} />
       </mesh>
       <group ref={body} position={[0, 0.7, 0]}>
         {/* torso */}
         <mesh position={[0, 0.55, 0]}>
           <boxGeometry args={[0.62, 0.75, 0.4]} />
-          <meshStandardMaterial color="#2a4a6b" roughness={0.7} />
+          <meshStandardMaterial color="#1a1a26" roughness={0.6} metalness={0.4} />
         </mesh>
         {/* hi-vis stripe */}
         <mesh position={[0, 0.62, 0.21]}>
@@ -72,14 +76,14 @@ export function WattAvatar() {
         {[-0.38, 0.38].map((x) => (
           <mesh key={x} position={[x, 0.5, 0.22]} rotation={[0.7, 0, 0]}>
             <capsuleGeometry args={[0.09, 0.4, 4, 8]} />
-            <meshStandardMaterial color="#2a4a6b" roughness={0.7} />
+            <meshStandardMaterial color="#1a1a26" roughness={0.6} metalness={0.4} />
           </mesh>
         ))}
         {/* legs bent, sitting */}
         {[-0.18, 0.18].map((x) => (
           <mesh key={x} position={[x, 0.12, 0.35]} rotation={[1.2, 0, 0]}>
             <capsuleGeometry args={[0.11, 0.45, 4, 8]} />
-            <meshStandardMaterial color="#1a2a3b" roughness={0.8} />
+            <meshStandardMaterial color="#12121c" roughness={0.7} metalness={0.4} />
           </mesh>
         ))}
         {/* head + hard hat */}

@@ -11,7 +11,7 @@ import { useMachineStore } from "@/lib/store";
 
 const RADIUS = 24;
 const CENTER: [number, number, number] = [0, 12, -26];
-const MAX_ARCS = 120;
+const MAX_ARCS = 40;
 
 /**
  * The live network backdrop: a slow wireframe globe dotted with the real
@@ -98,7 +98,7 @@ export function NetworkGlobe() {
             color="#23232f"
             wireframe
             transparent
-            opacity={highlighted ? 0.5 : 0.28}
+            opacity={highlighted ? 0.4 : 0.12}
           />
         </mesh>
         {/* real nodes */}
@@ -109,10 +109,10 @@ export function NetworkGlobe() {
             </bufferGeometry>
             <pointsMaterial
               color="#f7931a"
-              size={highlighted ? 0.55 : 0.35}
+              size={highlighted ? 0.5 : 0.22}
               sizeAttenuation
               transparent
-              opacity={0.95}
+              opacity={highlighted ? 0.95 : 0.7}
             />
           </points>
         )}
@@ -126,7 +126,7 @@ export function NetworkGlobe() {
                 new THREE.LineBasicMaterial({
                   color: "#f7931a",
                   transparent: true,
-                  opacity: highlighted ? 0.35 : 0.16,
+                  opacity: highlighted ? 0.3 : 0.09,
                 }),
               )
             }

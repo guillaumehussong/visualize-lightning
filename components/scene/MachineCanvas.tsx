@@ -8,6 +8,8 @@ import { CameraRig } from "./CameraRig";
 import { PieceShell } from "./PieceShell";
 import { NetworkGlobe } from "./NetworkGlobe";
 import { WattAvatar } from "./WattAvatar";
+import { MachineFrame } from "./MachineFrame";
+import { MachineEffects } from "./MachineEffects";
 import { PIECE_VISUALS } from "./pieces";
 
 /**
@@ -34,13 +36,14 @@ export default function MachineCanvas() {
       <Grid
         position={[0, -2.02, 0]}
         args={[80, 80]}
-        cellColor="#1a1a26"
-        sectionColor="#2a2a3a"
+        cellColor="#12121c"
+        sectionColor="#1f1f2e"
         fadeDistance={70}
         infiniteGrid
       />
 
       <NetworkGlobe />
+      <MachineFrame />
       <WattAvatar />
 
       {PIECES.map((p) => {
@@ -53,6 +56,7 @@ export default function MachineCanvas() {
       })}
 
       <CameraRig />
+      <MachineEffects />
     </Canvas>
   );
 }

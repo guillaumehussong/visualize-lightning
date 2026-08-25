@@ -62,7 +62,7 @@ export function NodesPiece({ active }: { active: boolean }) {
           <meshBasicMaterial color="#23232f" wireframe transparent opacity={0.25} />
         </mesh>
       </group>
-      {stats && (
+      {active && stats && (
         <Html center distanceFactor={18} position={[0, -2.1, 0]} zIndexRange={[10, 0]}>
           <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
             {stats.network.nodeCount.toLocaleString("en-US")} public nodes live

@@ -69,7 +69,7 @@ export function FeesPiece({ active }: { active: boolean }) {
         </bufferGeometry>
         <pointsMaterial color="#ffd700" size={0.06} sizeAttenuation />
       </points>
-      {stats && (
+      {active && stats && (
         <Html center distanceFactor={18} position={[0, -1.4, 0]} zIndexRange={[10, 0]}>
           <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
             avg toll {stats.network.avgFeeRate} ppm +{" "}

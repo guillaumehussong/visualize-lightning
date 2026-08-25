@@ -33,16 +33,16 @@ export function InvoicePiece({ active }: { active: boolean }) {
 
   return (
     <group ref={scroll}>
-      {/* parchment */}
+      {/* terminal slab */}
       <mesh rotation={[-0.35, 0, 0]}>
         <planeGeometry args={[2.6, 1.7]} />
-        <meshStandardMaterial color="#d8c9a3" side={THREE.DoubleSide} />
+        <meshStandardMaterial color="#15151f" metalness={0.6} roughness={0.4} side={THREE.DoubleSide} />
       </mesh>
-      {/* text lines */}
+      {/* emissive data lines */}
       {[...Array(4)].map((_, i) => (
         <mesh key={i} position={[-0.55, 0.45 - i * 0.3, 0.02]} rotation={[-0.35, 0, 0]}>
           <planeGeometry args={[1.1, 0.07]} />
-          <meshStandardMaterial color="#6b5d43" />
+          <meshStandardMaterial color="#f7931a" emissive="#f7931a" emissiveIntensity={0.9} />
         </mesh>
       ))}
       {/* QR block */}

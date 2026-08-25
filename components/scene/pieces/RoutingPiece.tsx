@@ -76,11 +76,13 @@ export function RoutingPiece({ active }: { active: boolean }) {
         <sphereGeometry args={[0.09, 12, 12]} />
         <meshStandardMaterial color="#fff" emissive="#ffd700" emissiveIntensity={3} />
       </mesh>
-      <Html center distanceFactor={18} position={[0, -1.9, 0]} zIndexRange={[10, 0]}>
-        <div className="max-w-[240px] truncate whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
-          {aliases ? `live path: ${aliases}` : "loading live nodes..."}
-        </div>
-      </Html>
+      {active && (
+        <Html center distanceFactor={18} position={[0, -1.9, 0]} zIndexRange={[10, 0]}>
+          <div className="max-w-[240px] truncate whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
+            {aliases ? `live path: ${aliases}` : "loading live nodes..."}
+          </div>
+        </Html>
+      )}
     </group>
   );
 }

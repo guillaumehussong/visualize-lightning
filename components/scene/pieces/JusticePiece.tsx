@@ -66,7 +66,7 @@ export function JusticePiece({ active }: { active: boolean }) {
         </mesh>
         <pointLight color="#ffd700" intensity={active ? 1.2 : 0.4} distance={3} />
       </group>
-      {stats?.deltas && (
+      {active && stats?.deltas && (
         <Html center distanceFactor={18} position={[0, -1.3, 0]} zIndexRange={[10, 0]}>
           <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
             {stats.deltas.channels24h >= 0 ? "+" : ""}

@@ -61,7 +61,7 @@ export function ChannelPiece({ active }: { active: boolean }) {
         <cylinderGeometry args={[0.26, 0.26, 3, 16]} />
         <meshStandardMaterial color="#ffb84d" emissive="#ffb84d" emissiveIntensity={0.6} />
       </mesh>
-      {stats && (
+      {active && stats && (
         <Html center distanceFactor={18} position={[0, -1.6, 0]} zIndexRange={[10, 0]}>
           <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
             {stats.network.channelCount.toLocaleString("en-US")} channels,{" "}

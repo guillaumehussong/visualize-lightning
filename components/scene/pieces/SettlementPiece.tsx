@@ -62,7 +62,7 @@ export function SettlementPiece({ active }: { active: boolean }) {
           <meshStandardMaterial color="#ffd700" emissive="#ffd700" emissiveIntensity={0.5} />
         </mesh>
       ))}
-      {blocks && (
+      {active && blocks && (
         <Html center distanceFactor={18} position={[0, -1.1, 0]} zIndexRange={[10, 0]}>
           <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
             block {blocks.height.toLocaleString("en-US")}, last one had{" "}

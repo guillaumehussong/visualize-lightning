@@ -57,11 +57,13 @@ export function HtlcPiece({ active }: { active: boolean }) {
           <meshStandardMaterial color="#eee" emissive="#eee" emissiveIntensity={0.6} />
         </mesh>
       </group>
-      <Html center distanceFactor={18} position={[0, -1.6, 0]} zIndexRange={[10, 0]}>
-        <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
-          up to 483 HTLCs per channel
-        </div>
-      </Html>
+      {active && (
+        <Html center distanceFactor={18} position={[0, -1.6, 0]} zIndexRange={[10, 0]}>
+          <div className="whitespace-nowrap rounded border border-border bg-panel/90 px-2 py-1 font-mono text-[11px] text-accent-soft">
+            up to 483 HTLCs per channel
+          </div>
+        </Html>
+      )}
     </group>
   );
 }
