@@ -1,7 +1,10 @@
+import { Suspense } from "react";
 import { copy } from "@/lib/copy";
 import { MachineCanvasClient } from "@/components/scene/MachineCanvasClient";
 import { StatsBar } from "@/components/scene/StatsBar";
 import { PieceNav } from "@/components/scene/PieceNav";
+import { PiecePanel } from "@/components/scene/PiecePanel";
+import { PieceDeepLink } from "@/components/scene/PieceDeepLink";
 
 export default function Home() {
   return (
@@ -17,7 +20,11 @@ export default function Home() {
         </div>
       </header>
 
+      <Suspense fallback={null}>
+        <PieceDeepLink />
+      </Suspense>
       <PieceNav />
+      <PiecePanel />
       <StatsBar />
     </main>
   );

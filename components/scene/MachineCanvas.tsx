@@ -5,14 +5,16 @@ import { Grid } from "@react-three/drei";
 import { DEFAULT_CAMERA, PIECES } from "@/lib/pieces";
 import { useMachineStore } from "@/lib/store";
 import { CameraRig } from "./CameraRig";
-import { PieceBox } from "./PieceBox";
+import { PieceShell } from "./PieceShell";
+import { PIECE_VISUALS } from "./pieces";
 
 /**
- * The machine canvas. Phase 2: placeholder pieces on an arc, bedrock slab for
- * Settlement, click empty space to return to the overview.
+ * The machine canvas. Each piece renders its sculpted visual (phase 3)
+ * inside the shared interaction shell.
  */
 export default function MachineCanvas() {
   const setActivePiece = useMachineStore((s) => s.setActivePiece);
+  const activePiece = useMachineStore((s) => s.activePiece);
 
   return (
     <Canvas
@@ -36,9 +38,14 @@ export default function MachineCanvas() {
         infiniteGrid
       />
 
-      {PIECES.map((p) => (
-        <PieceBox key={p.id} piece={p} />
-      ))}
+      {PIECES.map((p) => {
+        const Visual = PIECE_VISUALS[p.id];
+        return (
+          <PieceShell key={p.id} piece={p}>
+            {Visual ? <Visual active={activePiece === p.id} /> : null}
+          </PieceShell>
+        );
+      })}
 
       <CameraRig />
     </Canvas>
