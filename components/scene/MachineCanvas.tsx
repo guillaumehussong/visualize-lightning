@@ -7,6 +7,7 @@ import { useMachineStore } from "@/lib/store";
 import { CameraRig } from "./CameraRig";
 import { PieceShell } from "./PieceShell";
 import { NetworkGlobe } from "./NetworkGlobe";
+import { WattAvatar } from "./WattAvatar";
 import { PIECE_VISUALS } from "./pieces";
 
 /**
@@ -40,6 +41,7 @@ export default function MachineCanvas() {
       />
 
       <NetworkGlobe />
+      <WattAvatar />
 
       {PIECES.map((p) => {
         const Visual = PIECE_VISUALS[p.id];

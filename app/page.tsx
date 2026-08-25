@@ -5,6 +5,7 @@ import { StatsBar } from "@/components/scene/StatsBar";
 import { PieceNav } from "@/components/scene/PieceNav";
 import { PiecePanel } from "@/components/scene/PiecePanel";
 import { PieceDeepLink } from "@/components/scene/PieceDeepLink";
+import { HostPanel } from "@/components/scene/HostPanel";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       </Suspense>
       <PieceNav />
       <PiecePanel />
+      <HostPanel />
       <StatsBar />
     </main>
   );

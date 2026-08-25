@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "snapshot:topology": "tsx scripts/snapshot-topology.ts"
+    "snapshot:topology": "tsx scripts/snapshot-topology.ts",
+    "pregen:audio": "tsx scripts/pregen-host-audio.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.8",
