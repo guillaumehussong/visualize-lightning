@@ -90,6 +90,13 @@ export function HtlcPiece({ active }: { active: boolean }) {
 
   return (
     <group>
+      {/* warm rim light from behind the wheel: separates teeth from the floor */}
+      <pointLight position={[0, 0.6, -1.6]} color="#f7931a" intensity={active ? 3 : 1.2} distance={5} />
+      {/* soft contact shadow disc under the mechanism */}
+      <mesh position={[0, -1.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[1.9, 32]} />
+        <meshStandardMaterial color="#000000" transparent opacity={0.45} />
+      </mesh>
       {/* base plate */}
       <mesh position={[0, -0.95, 0]}>
         <boxGeometry args={[2.6, 0.12, 1.6]} />
