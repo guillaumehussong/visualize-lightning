@@ -13,9 +13,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://visualizelightning.org"),
   title: "Visualize Lightning",
   description:
     "The Lightning Network explained as a live 3D machine, running on real network data.",
+  openGraph: {
+    title: "Visualize Lightning",
+    description:
+      "The Lightning Network explained as a live 3D machine, running on real network data.",
+    images: ["/og.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Visualize Lightning",
+    description:
+      "The Lightning Network explained as a live 3D machine, running on real network data.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -24,7 +39,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Visualize Lightning",
+              url: "https://visualizelightning.org",
+              description:
+                "The Lightning Network explained as a live 3D machine, running on real network data.",
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

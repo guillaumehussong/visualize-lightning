@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useTopology } from "@/lib/live";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { COUNTRY_CENTROIDS, latLonToVec3 } from "@/lib/geo";
 import { useMachineStore } from "@/lib/store";
 
@@ -77,11 +78,12 @@ export function NetworkGlobe() {
     return { nodePositions, arcLines };
   }, [topology]);
 
-  useFrame((_, delta) => {
-    if (group.current) group.current.rotation.y += delta * 0.02;
-  });
-
   const highlighted = activePiece === "nodes";
+  const reducedMotion = useReducedMotion();
+
+  useFrame((_, delta) => {
+    if (group.current && !reducedMotion) group.current.rotation.y += delta * 0.02;
+  });
   const snapshotTime = topology
     ? new Date(topology.generatedAt).toISOString().slice(11, 16) + " UTC"
     : null;

@@ -6,6 +6,7 @@ import { PieceNav } from "@/components/scene/PieceNav";
 import { PiecePanel } from "@/components/scene/PiecePanel";
 import { PieceDeepLink } from "@/components/scene/PieceDeepLink";
 import { HostPanel } from "@/components/scene/HostPanel";
+import { MobileNav } from "@/components/scene/MobileNav";
 
 export default function Home() {
   return (
@@ -19,12 +20,26 @@ export default function Home() {
           </h1>
           <p className="text-sm text-muted">{copy.tagline}</p>
         </div>
+        <nav className="pointer-events-auto flex gap-3 font-mono text-xs text-muted">
+          <a href="/about" className="hover:text-accent-soft">
+            {copy.about}
+          </a>
+          <a
+            href="https://github.com/guillaumehussong/visualize-lightning"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-accent-soft"
+          >
+            {copy.github}
+          </a>
+        </nav>
       </header>
 
       <Suspense fallback={null}>
         <PieceDeepLink />
       </Suspense>
       <PieceNav />
+      <MobileNav />
       <PiecePanel />
       <HostPanel />
       <StatsBar />

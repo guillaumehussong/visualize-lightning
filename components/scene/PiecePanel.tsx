@@ -17,7 +17,7 @@ export function PiecePanel() {
   if (!content || !def) return null;
 
   return (
-    <aside className="fixed right-4 top-20 z-10 w-72 rounded-lg border border-border bg-panel/90 p-4 backdrop-blur">
+    <aside className="fixed inset-x-4 bottom-24 z-10 rounded-lg border border-border bg-panel/90 p-4 backdrop-blur md:inset-x-auto md:bottom-auto md:right-4 md:top-20 md:w-72">
       <div className="mb-1 flex items-start justify-between">
         <h2 className="font-mono text-sm text-accent-soft">
           {String(def.order).padStart(2, "0")} {content.title}

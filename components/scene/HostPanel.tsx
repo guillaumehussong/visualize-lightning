@@ -107,7 +107,7 @@ export function HostPanel() {
   if (!content) return null;
 
   return (
-    <div className="fixed bottom-12 right-4 z-20 w-80 rounded-lg border border-border bg-panel/90 p-3 backdrop-blur">
+    <div className="fixed bottom-12 right-4 left-4 z-20 rounded-lg border border-border bg-panel/90 p-3 backdrop-blur sm:left-auto sm:w-80">
       <div className="mb-2 flex items-center justify-between">
         <span className="font-mono text-xs text-accent-soft">Watt, the mechanic</span>
         {audioOk && (
@@ -127,7 +127,7 @@ export function HostPanel() {
         <p className="mb-2 text-sm text-amber-500">{ask.message}</p>
       )}
 
-      <div className="flex gap-2">
+      <div className="hidden gap-2 sm:flex">
         <input
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
