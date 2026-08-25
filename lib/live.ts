@@ -39,6 +39,8 @@ interface TopologyPayload {
   generatedAt: number;
   count: number;
   nodes: Array<{ pk: string; a: string; c: number; cap: number; iso: string | null }>;
+  fetchedAt?: number;
+  stale?: boolean;
 }
 
 interface BlocksPayload {

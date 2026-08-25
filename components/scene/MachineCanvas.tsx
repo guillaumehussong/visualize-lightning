@@ -6,6 +6,7 @@ import { DEFAULT_CAMERA, PIECES } from "@/lib/pieces";
 import { useMachineStore } from "@/lib/store";
 import { CameraRig } from "./CameraRig";
 import { PieceShell } from "./PieceShell";
+import { NetworkGlobe } from "./NetworkGlobe";
 import { PIECE_VISUALS } from "./pieces";
 
 /**
@@ -24,7 +25,7 @@ export default function MachineCanvas() {
       className="!fixed inset-0"
     >
       <color attach="background" args={["#07070d"]} />
-      <fog attach="fog" args={["#07070d", 40, 90]} />
+      <fog attach="fog" args={["#07070d", 55, 130]} />
       <ambientLight intensity={0.35} />
       <directionalLight position={[10, 18, 8]} intensity={1.1} />
       <pointLight position={[0, 8, 0]} intensity={0.6} color="#f7931a" />
@@ -37,6 +38,8 @@ export default function MachineCanvas() {
         fadeDistance={70}
         infiniteGrid
       />
+
+      <NetworkGlobe />
 
       {PIECES.map((p) => {
         const Visual = PIECE_VISUALS[p.id];
