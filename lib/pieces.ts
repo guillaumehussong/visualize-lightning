@@ -53,7 +53,7 @@ export const PIECES: PieceDef[] = [
 ];
 
 export const DEFAULT_CAMERA = {
-  position: [0, 13, 30] as [number, number, number],
+  position: [0, 11, 29] as [number, number, number],
   target: [0, 1, -2] as [number, number, number],
 };
 

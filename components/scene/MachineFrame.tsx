@@ -61,7 +61,7 @@ export function MachineFrame() {
   }, [bedCurve]);
 
   const spineGeo = useMemo(
-    () => new THREE.TubeGeometry(bedCurve, 220, 0.05, 8, false),
+    () => new THREE.TubeGeometry(bedCurve, 220, 0.08, 8, false),
     [bedCurve],
   );
   const conduitGeo = useMemo(
@@ -109,7 +109,7 @@ export function MachineFrame() {
     <group>
       {/* the continuous bed */}
       <mesh geometry={bedGeo}>
-        <meshStandardMaterial color="#101018" roughness={0.55} metalness={0.6} />
+        <meshStandardMaterial color="#1a1a28" roughness={0.5} metalness={0.65} />
       </mesh>
       {/* emissive spine on the bed */}
       <mesh geometry={spineGeo} position={[0, 0.16, 0]}>
