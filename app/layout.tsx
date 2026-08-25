@@ -12,8 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://visualizelightning.org";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://visualizelightning.org"),
+  metadataBase: new URL(siteUrl),
   title: "Visualize Lightning",
   description:
     "The Lightning Network explained as a live 3D machine, running on real network data.",
@@ -47,7 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Visualize Lightning",
-              url: "https://visualizelightning.org",
+              url: siteUrl,
               description:
                 "The Lightning Network explained as a live 3D machine, running on real network data.",
             }),

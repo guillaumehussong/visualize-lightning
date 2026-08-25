@@ -1,8 +1,11 @@
 import type { MetadataRoute } from "next";
 
+const base =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://visualizelightning.org";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://visualizelightning.org/sitemap.xml",
+    sitemap: `${base}/sitemap.xml`,
   };
 }
