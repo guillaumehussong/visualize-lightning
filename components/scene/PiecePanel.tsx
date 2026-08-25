@@ -1,6 +1,6 @@
 "use client";
 
-import { PIECE_CONTENT } from "@/content/pieces";
+import { usePieceContent } from "@/lib/useCopy";
 import { PIECES } from "@/lib/pieces";
 import { useMachineStore } from "@/lib/store";
 
@@ -11,6 +11,7 @@ import { useMachineStore } from "@/lib/store";
 export function PiecePanel() {
   const activePiece = useMachineStore((s) => s.activePiece);
   const setActivePiece = useMachineStore((s) => s.setActivePiece);
+  const PIECE_CONTENT = usePieceContent();
   if (!activePiece) return null;
   const content = PIECE_CONTENT[activePiece];
   const def = PIECES.find((p) => p.id === activePiece);

@@ -1,6 +1,6 @@
 "use client";
 
-import { copy } from "@/lib/copy";
+import { useCopy, usePieceContent } from "@/lib/useCopy";
 import { PIECES } from "@/lib/pieces";
 import { useMachineStore } from "@/lib/store";
 
@@ -11,6 +11,8 @@ import { useMachineStore } from "@/lib/store";
 export function MobileNav() {
   const activePiece = useMachineStore((s) => s.activePiece);
   const setActivePiece = useMachineStore((s) => s.setActivePiece);
+  const copy = useCopy();
+  const pieceContent = usePieceContent();
 
   return (
     <nav className="fixed inset-x-0 bottom-10 z-10 overflow-x-auto md:hidden">
@@ -35,7 +37,8 @@ export function MobileNav() {
                 : "border-border bg-panel/85 text-muted"
             }`}
           >
-            {String(p.order).padStart(2, "0")} {p.label}
+            {String(p.order).padStart(2, "0")}{" "}
+            {pieceContent[p.id]?.title ?? p.label}
           </button>
         ))}
       </div>

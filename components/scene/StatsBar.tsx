@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { copy } from "@/lib/copy";
+import { useCopy } from "@/lib/useCopy";
 
 interface StatsPayload {
   network: {
@@ -53,6 +53,7 @@ export function StatsBar() {
     };
   }, []);
 
+  const copy = useCopy();
   const c = copy.stats;
   const asOf = stats
     ? new Date(stats.fetchedAt).toISOString().slice(11, 16) + " UTC"

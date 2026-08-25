@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { PIECE_CONTENT } from "@/content/pieces";
+import { usePieceContent } from "@/lib/useCopy";
 import { useMachineStore } from "@/lib/store";
 
 type AskState =
@@ -23,6 +23,7 @@ export function HostPanel() {
   const [question, setQuestion] = useState("");
   const [ask, setAsk] = useState<AskState>({ status: "idle" });
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const PIECE_CONTENT = usePieceContent();
 
   const content = activePiece ? PIECE_CONTENT[activePiece] : null;
 

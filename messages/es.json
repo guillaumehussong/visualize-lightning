@@ -1,0 +1,129 @@
+{
+  "site": {
+    "title": "Visualiza Lightning",
+    "tagline": "La Lightning Network explicada como una máquina 3D en vivo"
+  },
+  "metadata": {
+    "title": "Visualiza Lightning | La Lightning Network explicada como una máquina 3D en vivo",
+    "description": "Explora la Lightning Network como una máquina 3D viva: billeteras, facturas, canales, HTLC, enrutamiento, comisiones y liquidación, con datos de la red en vivo."
+  },
+  "stats": {
+    "nodes": "nodos",
+    "channels": "canales",
+    "capacity": "capacidad",
+    "avgFee": "comisión media",
+    "block": "bloque",
+    "dataAsOf": "datos al",
+    "staleBadge": "datos congelados, mostrando la última instantánea conocida",
+    "liveError": "datos en vivo no disponibles"
+  },
+  "nav": {
+    "title": "La máquina",
+    "overview": "Vista general",
+    "hint": "haz clic en una pieza, o usa las flechas"
+  },
+  "about": "Acerca de",
+  "github": "Código",
+  "pieces": {
+    "wallet": {
+      "title": "Billetera",
+      "tagline": "Donde viven tus sats",
+      "facts": [
+        "Una billetera Lightning es una billetera Bitcoin que puede abrir canales de pago.",
+        "Algunas billeteras guardan tus llaves por ti (con custodia). Otras te dejan el control total (autocustodia).",
+        "Tu saldo fuera de la cadena sigue siendo tu bitcoin. Solo está estacionado dentro de canales."
+      ],
+      "narration": "Todo pago en esta máquina empieza aquí, en una billetera. Una billetera Lightning es una billetera Bitcoin normal con una habilidad extra: sabe abrir canales de pago. Cuando metes bitcoin en Lightning, tus monedas no van a ningún lugar extraño. Se mueven a una cuenta compartida entre tú y otro nodo, y solo ustedes dos pueden tocarlas. Algunas billeteras hacen todo esto por ti y guardan tus llaves, lo cual es simple pero significa confiar en una empresa. Otras dejan cada llave en tus manos. Es más trabajo, y más libertad. De cualquier forma, los sats que ves aquí son bitcoin real. Mira el contador: esto es lo que vale un dólar en sats ahora mismo, en vivo."
+    },
+    "invoice": {
+      "title": "Factura",
+      "tagline": "Una solicitud de pago firmada",
+      "facts": [
+        "Para recibir un pago creas una factura: monto, destino, vencimiento y un hash de pago.",
+        "Las facturas son cadenas largas que empiezan con lnbc. También se pueden mostrar como código QR.",
+        "La mayoría de las facturas vencen, a menudo después de una hora. Una factura vencida no se puede pagar."
+      ],
+      "narration": "En Lightning no recibes dinero de la nada. Primero lo pides, con una factura. Una factura es un mensaje corto y firmado que dice: quién soy, cuánto quiero, y qué candado secreto debe abrir el pagador. Se ve como una cadena larga de letras que empieza con lnbc, y tu billetera puede mostrarla como código QR. Adentro hay un monto, un destino, una hora de vencimiento y algo llamado hash de pago. Ese hash es la mitad pública de un secreto. Solo el receptor conoce el secreto, y revelarlo es lo que finalmente liquida el pago. La mayoría de las facturas vive una hora. Después de eso, son solo papel."
+    },
+    "channel": {
+      "title": "Canal",
+      "tagline": "Un UTXO compartido 2 de 2",
+      "facts": [
+        "Un canal es un UTXO de Bitcoin compartido entre dos nodos. Ambos deben firmar para moverlo.",
+        "La capacidad se fija al abrirlo. Solo cambia la división entre los dos lados.",
+        "Ahora mismo toda la red guarda miles de BTC dentro de canales como este."
+      ],
+      "narration": "Este tubo es el corazón de Lightning: un canal de pago. Por dentro es una salida de transacción real de Bitcoin, bloqueada en la cadena, compartida entre dos nodos. Dos llaves, dos dueños, y ambos deben estar de acuerdo para mover cualquier cosa. Por eso no necesita confianza. El monto total en el tubo, la capacidad, se fija cuando el canal se abre. Lo que cambia con cada pago es solo la división: cuánto hay de mi lado, cuánto del tuyo. Los pagos en Lightning son solo dos socios actualizando esta división, miles de veces, sin tocar la blockchain. Los números en pantalla son en vivo: esto es cuántos canales existen en la red real ahora mismo, y cuánto bitcoin guardan juntos."
+    },
+    "liquidity": {
+      "title": "Liquidez",
+      "tagline": "Hacia dónde puede empujar el tubo",
+      "facts": [
+        "Solo puedes enviar lo que está de tu lado del canal. Eso es liquidez saliente.",
+        "Para recibir, el otro lado debe tener fondos para empujar. Eso es liquidez entrante.",
+        "Las tiendas necesitan liquidez entrante. Los proveedores de liquidez la venden como servicio."
+      ],
+      "narration": "Mira dentro del tubo. El líquido naranja es la capacidad, y la pared del medio es la división. Solo puedes empujar lo que está de tu lado. Si tu lado está vacío, tu pago se detiene, sin importar qué tan grande sea el canal. Enviar necesita líquido de tu lado: liquidez saliente. Recibir necesita líquido del otro lado: liquidez entrante. Esta es la parte que los principiantes nunca ven venir. Una tienda que solo recibe pagos primero debe encontrar capacidad entrante, o cada pago falla. Por eso existen los proveedores de liquidez: te alquilan espacio de su lado del tubo. Mira cómo se mueven los niveles. Cada pago real en la red es una de estas pequeñas mareas."
+    },
+    "htlc": {
+      "title": "HTLC",
+      "tagline": "Una caja fuerte con dos candados",
+      "facts": [
+        "HTLC significa contrato con bloqueo de hash y de tiempo (Hashed Time-Locked Contract).",
+        "El receptor abre la caja revelando el secreto, llamado preimagen.",
+        "Si el secreto nunca llega, un temporizador devuelve el dinero al emisor automáticamente."
+      ],
+      "narration": "¿Cómo le pagas a un desconocido a través de otros desconocidos, sin confianza en ningún lado? Con esto: una caja fuerte con dos candados, llamada HTLC. El primer candado es un hash. La billetera del receptor creó un secreto y solo mostró su huella. Quien revele el secreto abre la caja y toma el dinero. El segundo candado es un temporizador. Si el secreto nunca aparece antes del plazo, la caja devuelve el dinero al emisor, automáticamente. Sin juez, sin ticket de soporte, sin contracargo. Estos dos candados juntos significan que un pago puede viajar por toda la red, y nadie en el medio puede quedarse con las monedas. O pasan el secreto, o todos reciben su dinero de vuelta. Un canal puede guardar cientos de estas cajas a la vez."
+    },
+    "routing": {
+      "title": "Enrutamiento",
+      "tagline": "El GPS de los sats",
+      "facts": [
+        "No necesitas un canal directo con la persona a la que pagas. La red encuentra un camino.",
+        "Cada salto es un HTLC envuelto dentro del siguiente, como sobres anidados.",
+        "Los nodos solo ven el salto anterior y el siguiente. El enrutamiento cebolla oculta el camino completo."
+      ],
+      "narration": "Tienes un canal con un nodo. La persona a la que quieres pagar está a tres nodos de distancia. No hay problema: la red encuentra un camino, como un GPS para tus sats. Tu billetera envuelve el pago en sobres anidados, uno por salto. Cada nodo abre solo su propio sobre, ve a dónde pasar el paquete, y lo reenvía. Ningún nodo en el medio sabe quién envió el pago ni quién lo recibe al final. Mira la luz viajar por este grafo. Estos son nodos reales de la red en vivo, y el camino entre ellos se calcula con conexiones reales. Si un camino falla, la billetera simplemente intenta otra ruta. Por eso Lightning funciona sin pedirle permiso a nadie."
+    },
+    "fees": {
+      "title": "Comisiones",
+      "tagline": "Pequeños peajes en el camino",
+      "facts": [
+        "Cada nodo de enrutamiento cobra un peaje: una pequeña comisión base fija más una tasa por millón de sats.",
+        "El promedio en vivo de la red se muestra aquí en ppm: partes por millón.",
+        "Enrutar un pago suele costar una fracción de centavo."
+      ],
+      "narration": "Nada es gratis, ni siquiera en Lightning. Cada nodo que reenvía tu pago cobra un peaje pequeño. Tiene dos partes: una comisión base fija, una fracción de centavo, más una tasa medida en partes por millón del monto que envías. Los arcos en este camino son las casetas de peaje, y puedes ver las chispas que recolectan cuando el pago pasa. El número en pantalla es la tasa promedio de comisión de toda la red, en vivo, directo de datos públicos. Compáralo con lo que una red de tarjetas le cobra a una tienda: alrededor de tres por ciento. Aquí, enrutar un pago suele costar menos de un centavo. Esa diferencia es la razón por la que la gente construye todo esto."
+    },
+    "justice": {
+      "title": "Justicia",
+      "tagline": "Haz trampa y lo pierdes todo",
+      "facts": [
+        "Cada actualización del canal es un compromiso firmado. Los estados viejos se revocan a propósito.",
+        "Transmitir un estado viejo permite a tu socio quedarse con todo el saldo del canal.",
+        "Las torres de vigilancia pueden hacer cumplir esto mientras estás desconectado."
+      ],
+      "narration": "¿Qué le impide a tu socio de canal cerrar el canal con un saldo viejo, uno donde tenía más? Este martillo. Cada vez que la división cambia, ambos socios firman un nuevo estado y arman una trampa contra el viejo. Si alguna vez transmites un estado revocado, el otro lado puede presentar la prueba y quedarse con todo lo del canal. No su parte. Todo. La penalización es todo el diseño: hacer trampa cuesta más de lo que paga, así que nadie hace trampa. ¿Y si estás desconectado por semanas? Puedes contratar una torre de vigilancia, un guardia silencioso que vigila la cadena y deja caer el martillo por ti. Lightning no necesita participantes honestos. Solo necesita este equilibrio del terror."
+    },
+    "nodes": {
+      "title": "Nodos",
+      "tagline": "Quién opera la red",
+      "facts": [
+        "La red son miles de nodos públicos operados por empresas, tiendas y aficionados.",
+        "Los grandes nodos de enrutamiento mantienen cientos de canales abiertos y ganan los peajes.",
+        "Muchos nodos operan sobre Tor. Aquí solo ves la parte pública de la red."
+      ],
+      "narration": "Retrocede un poco. La máquina que has estado explorando es solo una parte diminuta de una constelación. Cada punto de luz aquí es un nodo público real, de la instantánea en vivo de la red. Algunos son enrutadores profesionales, empresas que mantienen miles de canales abiertos y viven de los peajes. Algunos son tiendas. Algunos son personas corriendo un nodo en una computadora pequeña en su sala. Muchos se esconden detrás de Tor, y los canales privados nunca aparecen en los datos públicos. Así que la red real es más grande de lo que ves. Nadie es dueño de esta constelación, nadie puede apagarla, y cualquiera puede agregar una estrella. El contador de abajo es el número en vivo de nodos públicos ahora mismo."
+    },
+    "settlement": {
+      "title": "Liquidación",
+      "tagline": "La roca madre de Bitcoin debajo",
+      "facts": [
+        "Abrir y cerrar un canal son los únicos dos momentos que tocan la blockchain.",
+        "Todo lo demás son solo promesas firmadas. La cadena es el juez final.",
+        "Los bloques que pasan debajo de la máquina son los últimos bloques reales de Bitcoin."
+      ],
+      "narration": "Debajo de toda la máquina hay roca madre: la blockchain de Bitcoin. Lightning nunca la reemplaza. Se apoya en ella. Un canal toca la cadena exactamente dos veces: una cuando se abre, una cuando se cierra. Entre medio, miles de pagos pueden ocurrir como puras promesas firmadas, rápidos y baratos, porque todos saben que la cadena está ahí para resolver cualquier disputa. Mira los bloques de roca que pasan abajo. Estos son los últimos bloques reales de Bitcoin, traídos en vivo de la red, uno aproximadamente cada diez minutos. Cada canal en la constelación de arriba está anclado en esta roca. Lightning es rápido porque Bitcoin es lento y sólido. Ese es todo el truco de esta máquina."
+    }
+  }
+}

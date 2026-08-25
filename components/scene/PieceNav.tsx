@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { copy } from "@/lib/copy";
+import { useCopy, usePieceContent } from "@/lib/useCopy";
 import { PIECES } from "@/lib/pieces";
 import { useMachineStore } from "@/lib/store";
 
@@ -11,6 +11,8 @@ import { useMachineStore } from "@/lib/store";
 export function PieceNav() {
   const activePiece = useMachineStore((s) => s.activePiece);
   const setActivePiece = useMachineStore((s) => s.setActivePiece);
+  const copy = useCopy();
+  const pieceContent = usePieceContent();
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -57,7 +59,8 @@ export function PieceNav() {
                   : "text-muted hover:text-foreground"
               }`}
             >
-              {String(p.order).padStart(2, "0")} {p.label}
+              {String(p.order).padStart(2, "0")}{" "}
+              {pieceContent[p.id]?.title ?? p.label}
             </button>
           </li>
         ))}

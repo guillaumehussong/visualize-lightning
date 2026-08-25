@@ -1,25 +1,37 @@
 /**
- * UI copy, EN only at launch. Every string lives here so extraction to
- * next-intl messages files (phase 6) is a mechanical move, not a rewrite.
+ * Locale-aware copy. Single source of truth: messages/<locale>.json
+ * (next-intl contract). getCopy/getPieceContent run server-side; client
+ * components use the hooks in lib/useCopy.ts.
  */
-export const copy = {
-  siteTitle: "Visualize Lightning",
-  tagline: "The Lightning Network explained as a live 3D machine",
-  stats: {
-    nodes: "nodes",
-    channels: "channels",
-    capacity: "capacity",
-    avgFee: "avg fee",
-    block: "block",
-    dataAsOf: "data as of",
-    staleBadge: "data frozen, showing last known snapshot",
-    liveError: "live data unavailable",
-  },
-  nav: {
-    title: "The machine",
-    overview: "Overview",
-    hint: "click a piece, or use arrow keys",
-  },
-  about: "About",
-  github: "Code",
-} as const;
+import en from "@/messages/en.json";
+import es from "@/messages/es.json";
+import fr from "@/messages/fr.json";
+import type { PieceContent } from "@/content/pieces";
+
+export type Locale = "en" | "es" | "fr";
+
+const dictionaries: Record<Locale, typeof en> = { en, es, fr };
+
+function pick(locale: string): typeof en {
+  return dictionaries[locale as Locale] ?? en;
+}
+
+/** Shape kept identical to the pre-i18n static copy object. */
+export function getCopy(locale: string) {
+  const m = pick(locale);
+  return {
+    siteTitle: m.site.title,
+    tagline: m.site.tagline,
+    stats: m.stats,
+    nav: m.nav,
+    about: m.about,
+    github: m.github,
+  };
+}
+
+export function getPieceContent(locale: string): Record<string, PieceContent> {
+  const m = pick(locale);
+  return Object.fromEntries(
+    Object.entries(m.pieces).map(([id, p]) => [id, { id, ...p }]),
+  );
+}
